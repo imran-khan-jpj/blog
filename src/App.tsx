@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {connect} from 'react-redux';
+import {Switch, Route} from 'react-router-dom';
+import Navbar from './components/Navbar'
+import Main from './components/Main'
+import Login from './components/Login'
+import Register from './components/Register'
+import CreatePost from './components/CreatePost'
+import NotFound from './components/NotFound'
 
-function App() {
+type AppProperties = {
+  isLoggedIn: boolean;
+}
+
+const App: React.FC<AppProperties> = ({isLoggedIn}) => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Navbar />
+        <Switch>
+           <Route exact path="/"><Main /></Route>
+           <Route path="/login"><Login /></Route>
+           <Route path="/register"><Register /></Route>
+           <Route path="/create-post"><CreatePost /></Route>
+           <Route path="*"><NotFound /></Route>
+        </Switch>
     </div>
   );
 }
 
-export default App;
+interface Props {
+  auth : {isLoggedIn: boolean;}
+}
+
+const defaultState = (state: Props) => {
+  return {
+    isLoggedIn : state.auth.isLoggedIn
+  }
+}
+
+export default connect(defaultState)(App);

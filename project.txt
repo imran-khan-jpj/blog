@@ -1,0 +1,25 @@
+==>   Authentication Not Done
+
+==>   Google or FB Oauth Not Done
+
+==>   Rich text editor for content NOT DONE
+
+==>   Post can be either text or photo or both DONE
+
+==>   Multiple image upload
+
+==>   Upvote, downvote, comment on the post DONE
+
+==>   Save posts which we want to DONE
+
+==>   Like, edit, delete comment DONE
+
+==>   Report facility, not very complex, if that post has more than x reports then delete it.
+
+==>   Follow unfollow user
+
+==>   Add tags and posts under them
+
+==>   Sort posts according to trends
+
+==>   Search bar with query params

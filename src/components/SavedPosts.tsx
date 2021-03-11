@@ -4,6 +4,7 @@ import author from '../images/author.jpg'
 import store from '../store';
 import actions from '../actions';
 import {connect} from 'react-redux';
+import { useHistory } from 'react-router';
 
 
 type PostProperties = {
@@ -20,11 +21,18 @@ type PostProperties = {
 }
 
 
-const Main: React.FC<any> = ({posts}) => {
+const SavedPosts: React.FC<any> = ({posts, isLoggedIn, userId}) => {
+
+    console.log('in savedposts', posts);
+
+    const history = useHistory();
+  if (!isLoggedIn) {
+    history.push("/login");
+  }
 
 	useEffect(() => {
 		store.dispatch({type: actions.CATEGORIES});
-		store.dispatch({type: actions.POSTS});
+		store.dispatch({type: actions.POST_SAVED, payload: {userId }});
 	}, [])
 
 	return (
@@ -57,11 +65,13 @@ const Main: React.FC<any> = ({posts}) => {
 
 
 const defaultState = (state: any) => {
+    console.log(state);
 	return {
-		posts: state.post.posts,
+		posts: state.post.savedPosts,
 		userId: state.auth.userId,
+        isLoggedIn : state.auth.isLoggedIn
 	}
 }
 
 
-export default connect(defaultState)(Main);
+export default connect(defaultState)(SavedPosts);

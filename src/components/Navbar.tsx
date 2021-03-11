@@ -1,11 +1,18 @@
 import React from 'react';
+import store from '../store';
+import actions from '../actions';
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux';
 type AppProperties = {
   isLoggedIn: boolean;
 }
 const Navbar: React.FC<AppProperties> = ({isLoggedIn}) => {
-	console.log('i am inside of navbar component', isLoggedIn);
+
+	const logout = () => {
+		store.dispatch({type : actions.LOGOUT});
+	}
+
+
 	return (<>
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 		  <Link className="navbar-brand pl-5" to="/">Blog</Link>
@@ -18,22 +25,32 @@ const Navbar: React.FC<AppProperties> = ({isLoggedIn}) => {
 		      <li className="nav-item">
 		        <Link className="nav-link" to="/">Home</Link>
 		      </li>
+			  <li className="nav-item">
+		      	   <Link className="nav-link" to="/categories">Categories</Link>
+		      	 </li>
 		      {isLoggedIn 
 		      	?
-		      	 <li className="nav-item">
-		      	   <Link className="nav-link" to="/logout">Logout</Link>
+				  <>
+				  <li className="nav-item">
+		      	   <Link className="nav-link" to="/saved">Saved Posts</Link>
 		      	 </li>
+				   <li className="nav-item">
+		      	   <Link className="nav-link" to="/create-post">Create Post</Link>
+		      	 </li>
+		      	 <li className="nav-item">
+		      	   <button className="nav-link " onClick={logout}>Logout</button>
+		      	 </li>
+				  
+				  </>
 		      	 : 
 		      	 <>
 		      	 <li className="nav-item">
 		      	   <Link className="nav-link" to="/login">Login</Link>
 		      	 </li>
-		      <li className="nav-item">
-		        <Link className="nav-link" to="/register">Register</Link>
+		      <li className="nav-item cursor-pointer">
+		        <Link className="nav-link cursor-pointer" to="/register">Register</Link>
 		      </li>
-		      <li className="nav-item">
-		        <Link className="nav-link" to="/create-post">Create Post</Link>
-		      </li>
+			  
 		      	 </>
 		      	}
 		    </ul>

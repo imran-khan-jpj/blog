@@ -20,11 +20,11 @@ type PostProperties = {
 }
 
 
-const Main: React.FC<any> = ({posts}) => {
+const PostSaved: React.FC<any> = ({posts}) => {
 
 	useEffect(() => {
 		store.dispatch({type: actions.CATEGORIES});
-		store.dispatch({type: actions.POSTS});
+		store.dispatch({type: actions.POST_SAVED});
 	}, [])
 
 	return (
@@ -64,4 +64,4 @@ const defaultState = (state: any) => {
 }
 
 
-export default connect(defaultState)(Main);
+export default connect(defaultState)(PostSaved);

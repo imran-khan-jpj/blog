@@ -1,16 +1,17 @@
 import React from 'react';
+// import {Link} from 'react-router-dom'
 
-const Comment = () => {
-	return (
-		<div className="d-flex mt-2">
-			<div className="">
-				<input className="form-control" />
-			</div>
-			<div className="mt-1 ml-1">
-			<button className="btn btn-primary btn-sm">Submit</button>
-			</div>
-
-		</div>
+const Comment: React.FC<{comment: string; user_id:number; user_name:string}> = ({comment, user_id, user_name}) => {
+	
+        // console.log(comment, user_id, user_name);
+    return (
+		<div className="card">
+            <div className="card-body">
+                <h5 className="card-title">{user_name}</h5>
+                <p className="card-text">{comment}</p>
+              
+            </div>
+        </div>
 	)
 }
 

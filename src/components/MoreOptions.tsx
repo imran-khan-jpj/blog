@@ -5,10 +5,11 @@ import {BiHide} from 'react-icons/bi';
 import store from '../store';
 import actions from '../actions';
 
-const MoreOptions:React.FC<{showPost: boolean, setShowPost:any, id: number, userId: number; isLoggedIn: boolean; savedPost:boolean; setSavedPost: any}> = ({showPost, setShowPost, id, userId, isLoggedIn, savedPost, setSavedPost}) => {
+const MoreOptions:React.FC<{showPost: boolean, setShowPost:any, id: any, userId: number; isLoggedIn: boolean; savedPost:boolean; setSavedPost: any; setPostReportCount: any; postReportCount: any}> = ({showPost, setShowPost, id, userId, isLoggedIn, savedPost, setSavedPost, setPostReportCount, postReportCount}) => {
 	
 	
-	const reportPost = () => {
+	const reportPost = (e: any) => {
+		setPostReportCount((prev: any) => prev + 1);
 		store.dispatch({type: actions.POST_REPORT, payload: {id, userId}});
 		// setShowPost(false);
 	}
@@ -32,7 +33,7 @@ const MoreOptions:React.FC<{showPost: boolean, setShowPost:any, id: number, user
 				</div>
 				<div className="d-flex dropdown-item">
 				<span className="cursor-pointer text-danger"><MdReportProblem /></span>
-			    <button className="dropdown-item" onClick={reportPost}>Report Post</button>
+			    <button className="dropdown-item" onClick={reportPost} id={id}>Report Post</button>
 				</div> </>}
 			</div>
 		</div>

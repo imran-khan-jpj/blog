@@ -26,6 +26,7 @@ type ActionsType = {
 	POST_SAVE: string;
 	POST_SAVED: string;
 	SET_SAVED_POSTS : string;
+	DELETE_POST : string;
 }
 
 const actions: ActionsType = {
@@ -53,6 +54,7 @@ const actions: ActionsType = {
 	POST_REPORT : 'POST_REPORT',
 	POST_SAVE : 'POST_SAVE',
 	POST_SAVED : 'POST_SAVED',
-	SET_SAVED_POSTS : 'SET_SAVED_POSTS'
+	SET_SAVED_POSTS : 'SET_SAVED_POSTS',
+	DELETE_POST : 'DELETE_POST'
 }
 export default actions;

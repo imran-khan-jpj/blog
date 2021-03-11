@@ -38,9 +38,9 @@ const Post:React.FC<PostProperties> = ({id, title, description, category, user, 
 	const [likesLength, setLikesLength]     = useState(0);
 	const [comments, setComments]           = useState([]);
 	const [totalComments, setTotalComments] = useState(0);
-	const [showPost, setShowPost] = useState(true);
+	const [showPost, setShowPost]           = useState(true);
 	const [postReportCount, setPostReportCount] = useState(0);
-	const [savedPost, setSavedPost] = useState(false);
+	const [savedPost, setSavedPost]         = useState(false);
 	
 	
 	useEffect(() => {
@@ -57,11 +57,20 @@ const Post:React.FC<PostProperties> = ({id, title, description, category, user, 
 				setPostReportCount(post.post_report_count);
 				setSavedPost(post.authUserSavedThisPost);
 
+				console.log('post id is ', id, 'report count is', post.post_report_count);
 				
 			}
 		})
+
+		if(postReportCount > 1){
+			if(isLoggedIn){
+				store.dispatch({type: actions.DELETE_POST, payload: {id}});
+
+			}
+		}
 		
-	}, [id, postLikes]);
+	}, [id, postLikes, postReportCount]);
+
 
 
 
@@ -159,7 +168,7 @@ const Post:React.FC<PostProperties> = ({id, title, description, category, user, 
 				<div className="col-lg-8">
 					<div className="d-flex justify-content-between">
 						<p className="lead">{category.name}</p>
-						{moreOptions && <MoreOptions showPost={showPost} setShowPost={setShowPost} id={Number(id)} userId={userId} isLoggedIn={isLoggedIn} savedPost={savedPost} setSavedPost={setSavedPost}/>}
+						{moreOptions && <MoreOptions showPost={showPost} setShowPost={setShowPost} id={Number(id)} userId={userId} isLoggedIn={isLoggedIn} savedPost={savedPost} setSavedPost={setSavedPost} setPostReportCount={setPostReportCount} postReportCount={postReportCount}/>}
 						<p className="cursor-pointer" onClick={() => setMoreOptions(!moreOptions)}><FiMoreVertical /></p>
 					</div>
 					<h3>{title}</h3>

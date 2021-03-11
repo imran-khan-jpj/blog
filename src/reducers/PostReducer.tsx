@@ -113,6 +113,12 @@ const PostReducer = (state = initialState, action: Action) => {
 	}else if(action.type === 'SET_SAVED_POSTS'){
 		// console.log(action);
 		return {...state, savedPosts: action.payload.posts, postLikes : action.payload.postLikes }
+	}else if(action.type === 'DELETE_POST'){
+		axios.delete(`http://localhost:8000/api/post/${action.payload.id}`)
+			.then(() => {
+				getPosts();
+			})
+			return state;
 	}
 	return state;
 }

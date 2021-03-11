@@ -4,20 +4,7 @@
 ==>   image upload
 ==>   Upvote, downvote, comment on the post
 ==>   display how many comments a post has.
-==>   at a time only five comments are displaying if person want he can see next or previous comments
 ==>   display how many people this this post
 ==>   Save posts which we want to
-==>   Report facility, not very complex, if that post has more than x reports then delete it.
-==>   Like, edit, delete comment
+==>   Report facility, not very complex, if that post has more than 1 reports then delete it.
 ==>   post sort by created_at order
-
-
-
-
-====================Pending Section========================
-==>   Follow unfollow user
-==>   Rich text editor for content NOT DONE
-==>   Google or FB Oauth Not Done
-==>   Add tags and posts under them
-==>   Sort posts according to trends
-==>   Search bar with query params

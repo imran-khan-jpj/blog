@@ -5,12 +5,9 @@ import actions from '../actions';
 import store from '../store';
 
 
-type CurFnProperties = {
-	isLoggedIn : boolean;
-}
 
 
-const CreateCategory: React.FC<CurFnProperties> = ({isLoggedIn}) => {
+const CreateCategory: React.FC<{isLoggedIn: any}> = ({isLoggedIn}) => {
 	const history = useHistory();
 	const [name, setName] = useState('');
 	const [err, setErr] = useState('');
